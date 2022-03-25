@@ -1,0 +1,23 @@
+<launch>
+   
+   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video1" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="camera_frame" />
+    <param name="io_method" value="mmap"/>
+    <param name="brightness" value="32" />
+    <param name="framerate" value="30" />
+    <param name="sharpness" value="255" />
+    <param name="saturation" value="255"/>
+    <param name="contrast" value="60"/>
+    <param name="exposure" value="25"/>
+  </node>
+  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/usb_cam/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+
+   <!--include file="$(find darknet_ros)/launch/darknet_ros.launch"/-->
+</launch>
