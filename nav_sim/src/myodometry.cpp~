@@ -1,0 +1,66 @@
+#include <string>
+#include <ros/ros.h>
+#include <sensor_msgs/JointState.h>
+#include <tf/transform_broadcaster.h>
+#include <nav_msgs/Odometry.h>
+
+double a,b;
+geometry_msgs::Quaternion odom_quat;
+
+void odomCallback(const nav_msgs::Odometry::ConstPtr& odom)
+{
+    a=odom->pose.pose.position.x;
+    b=odom->pose.pose.position.y;
+    odom_quat=odom->pose.pose.orientation;
+}
+
+
+int main(int argc, char** argv) {
+
+	ros::init(argc, argv, "state_publisher");
+	ros::NodeHandle n;
+	ros::Subscriber odom_sub = n.subscribe<nav_msgs::Odometry>("odom", 10, odomCallback);
+
+	// initial position
+	double x = 0.0; 
+	double y = 0.0;
+	double th = 0;
+
+	ros::Time current_time;
+	ros::Time last_time;
+	current_time = ros::Time::now();
+	last_time = ros::Time::now();
+
+	tf::TransformBroadcaster broadcaster;
+	ros::Rate loop_rate(50);
+
+	// message declarations
+	geometry_msgs::TransformStamped odom_trans;
+	odom_trans.header.frame_id = "odom";
+	odom_trans.child_frame_id = "base_footprint";
+
+	while (ros::ok()) {
+		current_time = ros::Time::now(); 
+
+		x += a;
+		y += b;
+
+		// update transform
+		odom_trans.header.stamp = current_time; 
+		odom_trans.transform.translation.x = x; 
+		odom_trans.transform.translation.y = y; 
+		odom_trans.transform.translation.z = 0.0;
+		odom_trans.transform.rotation = odom_quat;
+
+
+		last_time = current_time;
+
+		// publishing the odometry and the new tf
+		broadcaster.sendTransform(odom_trans);
+
+		loop_rate.sleep();
+	}
+
+        ros::spin();
+	return 0;
+}
