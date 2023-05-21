@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/gzb/catkin_workspace/devel/.private/cv_bridge/setup.sh

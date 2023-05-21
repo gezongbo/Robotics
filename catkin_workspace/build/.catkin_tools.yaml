@@ -1,0 +1,6 @@
+devel_space: /home/gzb/catkin_workspace/devel
+install: true
+install_space: /home/gzb/catkin_workspace/install
+profile: default
+source_space: /home/gzb/catkin_workspace/src
+workspace: /home/gzb/catkin_workspace

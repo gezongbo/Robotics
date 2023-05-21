@@ -1,0 +1,1 @@
+/home/gzb/catkin_workspace/devel/.private/catkin_tools_prebuild/local_setup.bash

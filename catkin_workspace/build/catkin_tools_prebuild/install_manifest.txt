@@ -1,0 +1,13 @@
+/home/gzb/catkin_workspace/install/_setup_util.py
+/home/gzb/catkin_workspace/install/env.sh
+/home/gzb/catkin_workspace/install/setup.bash
+/home/gzb/catkin_workspace/install/local_setup.bash
+/home/gzb/catkin_workspace/install/setup.sh
+/home/gzb/catkin_workspace/install/local_setup.sh
+/home/gzb/catkin_workspace/install/setup.zsh
+/home/gzb/catkin_workspace/install/local_setup.zsh
+/home/gzb/catkin_workspace/install/.rosinstall
+/home/gzb/catkin_workspace/install/lib/pkgconfig/catkin_tools_prebuild.pc
+/home/gzb/catkin_workspace/install/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+/home/gzb/catkin_workspace/install/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+/home/gzb/catkin_workspace/install/share/catkin_tools_prebuild/package.xml
