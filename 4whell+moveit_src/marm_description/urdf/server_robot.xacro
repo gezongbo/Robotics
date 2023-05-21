@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<robot name="marm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find marm_description)/urdf/robot_arm/arm.urdf.xacro" />
+   
+    <xacro:include filename="$(find marm_description)/urdf/robot_base/base.urdf.xacro" />
+
+</robot>

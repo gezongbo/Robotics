@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find marm_description)/urdf/robot_base/base.gazebo.xacro" />
+    <xacro:include filename="$(find marm_description)/urdf/robot_base/base.transmission.xacro" />
+
+    <xacro:macro name="robot_base" params="name">
+
+        <link name="${name}_footprint">
+            <inertial>
+                <mass value="0.0001" />
+                <origin xyz="0 0 0.1" rpy="0 0 0" />
+                <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.001 0.001 0.001" />
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0.1" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.001 0.001 0.001" />
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${name}_footprint_joint" type="fixed">
+            <origin xyz="0 0 0.14" rpy="0 0 0" />
+            <parent link="${name}_footprint"/>
+            <child link="${name}_link" />
+        </joint>
+
+        <link name="${name}_link">
+            <inertial>
+                <origin xyz="-0.02234 0.00028983 -0.035989" rpy="0 0 0" />
+                <mass value="1.7663" />
+                <inertia ixx="50.652232699207" ixy="-10.009719934438" ixz="10.293988226423" iyy="50.669473158652" iyz="-10.007379583694" izz="30.683196351726" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/robot_base.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.75294 0.75294 0.75294 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/robot_base.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="${name}_link">
+            <material>Gazebo/DarkGrey</material>
+        </gazebo>
+
+        <link name="LF_wheel">
+            <inertial>
+                <origin xyz="5.06E-05 1.4874E-05 -0.016736" rpy="0 0 0" />
+                <mass value="0.23813" />
+                <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/LF_wheel.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.75294 0.75294 0.75294 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/LF_wheel.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="LF_wheel">
+            <material>Gazebo/Grey</material>
+        </gazebo>
+
+        <joint name="LF_joint" type="continuous">
+            <origin xyz="0.18701 0.25631 -0.066732" rpy="-1.5708 0 0" />
+            <parent link="${name}_link" />
+            <child link="LF_wheel" />
+            <axis xyz="0 0 1" />
+        </joint>
+
+        <link name="RF_wheel">
+            <inertial>
+                <origin xyz="-2.344E-10 -4.6797E-06 -0.016713" rpy="0 0 0" />
+                <mass value="0.23813" />
+                <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/RF_wheel.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.75294 0.75294 0.75294 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/RF_wheel.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="RF_wheel">
+            <material>Gazebo/Grey</material>
+        </gazebo>
+
+        <joint name="RF_joint" type="continuous">
+            <origin xyz="0.18599 -0.25633 -0.067553" rpy="1.5708 0 0" />
+            <parent link="${name}_link" />
+            <child link="RF_wheel" />
+            <axis xyz="0 0 1" />
+        </joint>
+
+        <link name="RB_wheel">
+            <inertial>
+                <origin xyz="-5.0604E-05 -1.4877E-05 -0.016736" rpy="0 0 0" />
+                <mass value="0.23813" />
+                <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/RB_wheel.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.75294 0.75294 0.75294 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/RB_wheel.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="RB_wheel">
+            <material>Gazebo/Grey</material>
+        </gazebo>
+
+        <joint name="RB_joint" type="continuous">
+            <origin xyz="-0.18661 -0.25633 -0.067553" rpy="1.5708 0 0" />
+            <parent link="${name}_link" />
+            <child link="RB_wheel" />
+            <axis xyz="0 0 1" />
+        </joint>
+
+        <link name="LB_wheel">
+            <inertial>
+                <origin xyz="4.1181E-09 4.6844E-06 -0.016713" rpy="0 0 0" />
+                <mass value="0.23813" />
+                <inertia  ixx="0.012411765597" ixy="-0.000711733678" ixz="0.00050272983" iyy="0.015218160428" iyz="-0.000004273467" izz="0.011763977943" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/LB_wheel.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.75294 0.75294 0.75294 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://marm_description/meshes/LB_wheel.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="LB_wheel">
+            <material>Gazebo/Grey</material>
+        </gazebo>
+
+        <joint name="LB_joint" type="continuous">
+            <origin xyz="-0.18559 0.25593 -0.067553" rpy="-1.5708 0 0" />
+            <parent link="${name}_link" />
+            <child link="LB_wheel" />
+            <axis xyz="0 0 1" />
+        </joint>
+
+        <xacro:robot_base_gazebo />
+        <xacro:robot_base_transmission />
+
+    </xacro:macro>
+</robot>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:macro name="robot_arm_gazebo" params="name">
+		<gazebo reference="${name}_link_0">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Gray</material>
+		</gazebo>
+
+
+		<gazebo reference="${name}_link_1">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Orange</material>
+		</gazebo>
+
+		<gazebo reference="${name}_link_2">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Orange</material>
+		</gazebo>
+
+		<gazebo reference="${name}_link_3">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Orange</material>
+		</gazebo>
+
+		<gazebo reference="${name}_link_4">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Orange</material>
+		</gazebo>
+
+		<gazebo reference="${name}_link_5">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Orange</material>
+		</gazebo>
+
+		<gazebo reference="${name}_link_6">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Orange</material>
+		</gazebo>
+
+		<gazebo reference="${name}_tool">
+			<gravity>true</gravity>
+			<selfCollide>true</selfCollide>
+			<material>Gazebo/Red</material>
+		</gazebo>
+
+
+	</xacro:macro>
+</robot>

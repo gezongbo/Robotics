@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <xacro:include filename="$(find marm_description)/urdf/robot_arm/arm.gazebo.xacro" />
+  <xacro:include filename="$(find marm_description)/urdf/robot_arm/arm.transmission.xacro" />
+
+  <!-- Defining the colors used in this robot -->
+    <xacro:macro name="robot_arm" params="parent name *origin">
+
+      <!-- joint between base_link and arm_0_link -->
+      <joint name="${name}_joint_0" type="fixed" >
+        <insert_block name="origin" />
+        <parent link="${parent}" />
+        <child link="${name}_link_0" />
+      </joint>
+
+      <link name="${name}_link_0">
+        <inertial>
+          <origin xyz="-5.20417042793042E-18 -2.21523875632013E-09 0.0271402491295166" rpy="0 0 0" />
+          <mass value="0.523998722050114" />
+          <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/base_link.STL" />
+          </geometry>
+          <material name="">
+            <color rgba="1 1 1 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/base_link.STL" />
+          </geometry>
+        </collision>
+      </link>
+
+      <link name="${name}_link_1">
+        <inertial>
+          <origin xyz="-1.20816608838448E-05 -0.00651600936715511 -0.000552100548171744" rpy="0 0 0" />
+          <mass value="0.174944720055714" />
+          <inertia ixx="0.003863" ixy="-0.000979" ixz="0.000000" iyy="0.006196" iyz="0.000000" izz="0.006369" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link1.STL" />
+          </geometry>
+          <material name="">
+            <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link1.STL" />
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${name}_joint_1" type="revolute">
+        <origin xyz="0 0 0.10503" rpy="3.1416 0 -1.5708" />
+        <parent link="${name}_link_0" />
+        <child link="${name}_link_1" />
+        <axis xyz="0 0 1" />
+        <limit effort="300" velocity="3" lower="-2.62" upper="2.62"/>
+        <dynamics damping="50" friction="1"/>
+      </joint>
+
+      <link name="${name}_link_2">
+        <inertial>
+          <origin xyz="-0.0872101280009273 1.55213578101332E-10 -0.000459060812043555" rpy="0 0 0" />
+          <mass value="0.420803092158422" />
+          <inertia ixx="0.000823" ixy="0.000000" ixz="-0.000000" iyy="0.004447" iyz ="0.000000" izz="0.004439" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link2.STL" />
+          </geometry>
+          <material name="">
+            <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link2.STL" />
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${name}_joint_2" type="revolute">
+        <origin xyz="0 -0.080089 0" rpy="-1.5708 -1.5708 0" />
+        <parent link="${name}_link_1" />
+        <child link="${name}_link_2" />
+        <axis xyz="0 0 1" />
+        <limit effort="300" velocity="2" lower="-1.57" upper="1.57"/>
+        <dynamics damping="50" friction="1"/>
+      </joint>
+
+      <link name="${name}_link_3">
+        <inertial>
+          <origin xyz="-0.1135616072917 -6.58890279213453E-06 0.0799484530858134" rpy="0 0 0" />
+          <mass value="0.323128957917705" />
+          <inertia ixx="0.002459" ixy="0.000000" ixz="0.000000" iyy="0.002571" iyz="-0.000000" izz="0.000535" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link3.STL" />
+          </geometry>
+          <material name="">
+            <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link3.STL" />
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${name}_joint_3" type="revolute">
+        <origin xyz="-0.17442 0 0" rpy="0 0 0" />
+        <parent link="${name}_link_2" />
+        <child link="${name}_link_3" />
+        <axis xyz="0 0 -1" />
+        <limit effort="300" velocity="2" lower="-2.53" upper="2.53"/>
+        <dynamics damping="50" friction="1"/>
+      </joint>
+
+      <link name="${name}_link_4">
+        <inertial>
+          <origin xyz="1.20816608750185E-05 -0.000552100548217915 0.0735727259368403" rpy="0 0 0" />
+          <mass value="0.174944720055542" />
+          <inertia ixx="0.000869" ixy="0.000000" ixz="-0.000000" iyy="0.001173" iyz="-0.000231" izz="0.001091" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link4.STL" />
+          </geometry>
+          <material name="">
+            <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link4.STL" />
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${name}_joint_4" type="revolute">
+        <origin xyz="-0.17442 0 0.084516" rpy="-3.1416 0 1.5708" />
+        <parent link="${name}_link_3" />
+        <child link="${name}_link_4" />
+        <axis xyz="0 0 -1" />
+        <limit effort="300" velocity="1" lower="-2.44" upper="2.44"/>
+        <dynamics damping="50" friction="1"/>
+      </joint>
+
+      <link name="${name}_link_5">
+        <inertial>
+          <origin xyz="-1.20804290306975E-05 0.00055210071146064 0.0735727257683605" rpy="0 0 0" />
+          <mass value="0.174944718271737" />
+          <inertia ixx="0.000280" ixy="0.000000" ixz="0.000000" iyy="0.000339" iyz="0.000000" izz="0.000119" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link5.STL" />
+          </geometry>
+          <material name="">
+            <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link5.STL" />
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${name}_joint_5" type="revolute">
+        <origin xyz="0 0 0.080089" rpy="1.5708 0 0" />
+        <parent link="${name}_link_4" />
+        <child link="${name}_link_5" />
+        <axis xyz="0 0 -1" />
+        <limit effort="300" velocity="2" lower="-2.44" upper="2.44"/>
+        <dynamics damping="50" friction="1"/>
+      </joint>
+
+      <link name="${name}_link_6">
+        <inertial>
+          <origin xyz="-4.16333634234434E-17 5.55111512312578E-17 0.0372495016118176" rpy="0 0 0" />
+          <mass value="0.00868819727159253" />
+          <inertia ixx="0.000080" ixy="0.000000" ixz="0.000000" iyy="0.000039" iyz="0.000000" izz="0.000019" />
+        </inertial>
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link6.STL" />
+          </geometry>
+          <material name="">
+            <color rgba="1 1 1 1" />
+          </material>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://marm_description/meshes/Empty_Link6.STL" />
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${name}_joint_6" type="revolute">
+        <origin xyz="0 0 0.080089" rpy="1.5708 0 -3.1416" />
+        <parent link="${name}_link_5" />
+        <child link="${name}_link_6" />
+        <axis xyz="0 0 -1" />
+        <limit effort="300" velocity="2" lower="-3.14" upper="3.14"/>
+        <dynamics damping="50" friction="1"/>
+      </joint>
+
+      <link name="${name}_tool">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <mass value="1"/>
+          <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <cylinder radius="0.005" length="0.05"/>
+          </geometry>
+        </visual>
+
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <cylinder radius="0.005" length="0.05"/>
+          </geometry>
+        </collision>
+      </link>
+
+      <joint name="${name}_joint_tool" type="fixed" >
+        <parent link="${name}_link_6" />
+        <child link="${name}_tool" />
+        <origin xyz="0 0 0.05" rpy="0 0 0" />
+      </joint>
+
+      <xacro:robot_arm_gazebo name="${name}" />
+      <xacro:robot_arm_transmission name="${name}" />
+
+    </xacro:macro>
+
+</robot>

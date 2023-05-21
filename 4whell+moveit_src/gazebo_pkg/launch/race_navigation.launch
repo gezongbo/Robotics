@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <!-- Launch the race -->
+  <include file="$(find gazebo_pkg)/launch/race.launch">
+  </include>
+  
+  <!-- Launch the built-map -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find gazebo_pkg)/maps/ucar_map.yaml" />
+
+  <!-- ODOMETRY -->
+  <!--rf2o_Laser_Odometry-->
+  <!--include file="$(find gazebo_pkg)/launch/rf2o.launch.xml" /-->
+  <!-- Robot_Localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+      <rosparam command="load" file="$(find gazebo_pkg)/params/ekf_params.yaml" />
+  </node>
+  
+  
+  <!-- AMCL -->
+  <include file="$(find gazebo_pkg)/launch/amcl.launch"/>
+
+  <!-- TF -->
+  <!--node pkg="tf" type="static_transform_publisher" name="map_to_odom" args="0.0 0.0 0.0 0 0 0.0 /map /odom 1000"/-->
+
+
+  <!-- move_base -->
+  <include file="$(find gazebo_pkg)/launch/move_base.launch"/>
+
+
+  <!-- Rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find gazebo_pkg)/config/rviz/race_nav.rviz"/>
+  <!-- Send Goal -->
+  <!--node pkg="gazebo_pkg" type="send_goal" respawn="false" name="send_goal" output="screen"/-->
+  <!--node pkg="gazebo_pkg" type="send_goal.py" name="sent_goal" output="screen"/-->
+</launch>

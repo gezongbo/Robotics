@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <property name="wheel_mechanical_reduction" value="${624/35 * 80/18}"/>
+  <property name="caster_mechanical_reduction" value="${624/35 * 80/18}"/>
+
+  <xacro:macro name="robot_base_transmission">
+    <!-- front left wheel -->
+    <transmission name="wheel_trans_lf">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="LF_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="LF_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- front right wheel -->
+    <transmission name="wheel_trans_rf">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="RF_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="RF_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- back left wheel -->
+    <transmission name="wheel_trans_rb">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="RB_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="RB_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- back right wheel -->
+    <transmission name="wheel_trans_lb">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="LB_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="LB_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>${wheel_mechanical_reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  </xacro:macro>
+</robot>

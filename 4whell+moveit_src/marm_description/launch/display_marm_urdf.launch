@@ -1,0 +1,18 @@
+<launch>
+	<!-- 设置机器人模型路径参数 -->
+	<!--param name="robot_description" textfile="$(find marm_description)/urdf/marm.urdf" /-->
+	<arg name="model" default="$(find marm_description)/urdf/server_robot.xacro" />
+        <param name="robot_description" command="$(find xacro)/xacro  --inorder $(arg model)" />
+
+        <!-- Run a python script to send a service call the gazebo_ros to spawn a URDF robot -->
+        <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+		args="-urdf -model robot -param robot_description -x 0 -y 0 -z 0"/> 
+	<!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+	
+	<!-- 运行robot_state_publisher节点，发布tf  -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	
+	<!-- 运行rviz可视化界面 -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find marm_description)/config/marm_urdf.rviz" required="true" />
+</launch>

@@ -1,0 +1,41 @@
+<launch>
+    <!-- 运行gmapping节点，订阅/tf和/scan话题，发布/map_metadata，/map，/~entropy http://wiki.ros.org/gmapping/  -->
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" clear_params="true">
+        <param name="base_frame" value="dummy"/> <!-- 根据自己的基座标系名称进行修改 -->
+        <param name="odom_frame" value="odom"/><!-- 根据自己的里程计坐标系名称进行修改 -->
+        <param name="map_update_interval" value="0.1"/><!-- 地图更新之间的间隔时间（秒） -->
+        <!-- Set maxUrange < actual maximum range of the Laser -->
+        <param name="maxRange" value="3.0"/><!-- 传感器的最大范围 -->
+        <param name="maxUrange" value="2.5"/><!-- 如果传感器范围内没有障碍物的区域应在地图中显示为自由空间，则设置maxUrange<=maxRange。 -->
+        <param name="sigma" value="0.05"/><!--  -->
+        <param name="kernelSize" value="1"/><!--  -->
+        <param name="lstep" value="0.05"/><!--  -->
+        <param name="astep" value="0.05"/><!--  -->
+        <param name="iterations" value="5"/><!--  -->
+        <param name="lsigma" value="0.075"/><!--  -->
+        <param name="ogain" value="3.0"/><!--  -->
+        <param name="lskip" value="0"/><!--  -->
+        <param name="srr" value="0.01"/><!-- 作为平移函数的平移里程表误差（rho/rho） -->
+        <param name="srt" value="0.02"/><!-- 作为旋转函数的平移里程表误差（ρ/θ） -->
+        <param name="str" value="0.01"/><!-- 作为平动函数的转动里程表误差（θ/rho） -->
+        <param name="stt" value="0.02"/><!-- 作为旋转函数的旋转里程表误差（θ/θ） -->
+        <param name="linearUpdate" value="0.5"/><!-- 每次机器人转这么远的时候都要扫描一次 -->
+        <param name="angularUpdate" value="0.436"/><!-- 每次机器人旋转这么远的时候都会进行扫描 -->
+        <param name="temporalUpdate" value="-1.0"/><!--  -->
+        <param name="resampleThreshold" value="0.5"/><!--  -->
+        <param name="particles" value="180"/><!-- 过滤器中的粒子数 -->
+        <param name="xmin" value="-0.1"/><!-- 初始地图大小（米） -->
+        <param name="ymin" value="-0.1"/><!--  -->
+        <param name="xmax" value="0.1"/><!--  -->
+        <param name="ymax" value="0.1"/><!--  -->
+        <param name="delta" value="0.05"/><!-- 地图分辨率（每个占用网格块的米数） -->
+        <param name="llsamplerange" value="0.01"/><!--  -->
+        <param name="llsamplestep" value="0.01"/><!--  -->
+        <param name="lasamplerange" value="0.005"/><!--  -->
+        <param name="lasamplestep" value="0.005"/><!--  -->
+    </node>
+
+    <!-- 在rviz中显示-->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find gazebo_pkg)/config/ifly_gmapping.rviz" required="true" />
+
+</launch>

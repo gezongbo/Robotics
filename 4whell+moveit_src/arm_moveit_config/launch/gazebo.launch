@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="urdf_path" default="$(find marm_description)/urdf/marm.urdf"/>
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="$(find marm_description)/world/race_arm.world"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gazebo_gui)"/>
+  </include>
+  <param name="robot_description" textfile="$(arg urdf_path)" />
+  <!-- push robot_description to factory and spawn robot in gazebo at the origin, change x,y,z arguments to spawn in a different position -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -x 3.2 -y 3.2 -z 0.02 "
+    respawn="false" output="screen" />
+  <include file="$(find arm_moveit_config)/launch/ros_controllers.launch"/>
+
+<group ns="racecar">
+  <arg name="model" default="$(find gazebo_pkg)/urdf/waking_robot.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro  --inorder $(arg model)"/>
+
+  <!-- Run a python script to send a service call the gazebo_ros to spawn a URDF robot -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+	 args="-urdf -model robot1 -param robot_description -x 0.2 -y 0.2 -z 0.05"/> 
+   <!-- Load joint controller configurations from YAML file to parameter server -->
+</group>
+
+   <!--node name="joint_state_publisher1" pkg="joint_state_publisher" type="joint_state_publisher" />
+   <node name="robot_state_publisher1" pkg="robot_state_publisher" type="robot_state_publisher"/-->
+</launch>

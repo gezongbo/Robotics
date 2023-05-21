@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find gazebo_pkg)/config/move_base.rviz"/>
+</launch>

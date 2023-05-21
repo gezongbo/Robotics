@@ -1,0 +1,29 @@
+B_position_x: 2.54  #导航去B区。
+B_position_y: -2.55
+B_orientation_z: 1
+B_orientation_w: -0.0287
+
+C_position_x: 1 #导航去C区。
+C_position_y: -2
+C_orientation_z: 0
+C_orientation_w: 1
+
+D1_position_x: 1.12 #导航去终点D1。
+D1_position_y: -1.01
+D1_orientation_z: 0.71
+D1_orientation_w: 0.71
+
+D2_position_x: 0.7  #导航去终点D2。
+D2_position_y: -1.1
+D2_orientation_z: 0.71
+D2_orientation_w: 0.71
+
+D3_position_x: 0.16 #导航去终点D3。
+D3_position_y: -1.15
+D3_orientation_z: 0.71
+D3_orientation_w: 0.71
+
+
+Choose_D1: true
+Choose_D2: false
+Choose_D3: false
