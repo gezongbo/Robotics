@@ -1,0 +1,33 @@
+<robot name="myrobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- 传动实现:用于连接控制器与关节 -->
+    <xacro:macro name="leg_trans" params="leg_name">
+        <!-- Transmission is important to link the joints and the controller -->
+        <transmission name="${leg_name}_little_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="joint_${leg_name}_little">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="joint_${leg_name}_little_motor">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+        <transmission name="${leg_name}_foot_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="joint_${leg_name}_foot">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="$joint_${leg_name}_foot_motor">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+    
+    <xacro:leg_trans leg_name="lf" />
+    <xacro:leg_trans leg_name="rf" />
+    <xacro:leg_trans leg_name="bf" />
+    <xacro:leg_trans leg_name="br" />
+
+</robot>
+

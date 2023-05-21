@@ -1,0 +1,1502 @@
+<robot name="mybase" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- <link name="world" /> -->
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+            <sphere radius="0.001" />
+            </geometry>
+        </visual>
+    </link>
+    <!-- <joint
+        name="virtual_joint"
+        type="floating">
+        <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+        <parent
+        link="world" />
+        <child
+        link="base_footprint" />
+    </joint> -->
+    <link
+        name="base_link">
+        <inertial>
+        <origin
+            xyz="0.046328 -1.6644E-17 -0.095917"
+            rpy="0 0 0" />
+        <mass
+            value="20.654" />
+        <inertia
+            ixx="0.9163"
+            ixy="-1.7081E-16"
+            ixz="-5.7132E-17"
+            iyy="2.1018"
+            iyz="4.0487E-17"
+            izz="2.5768" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/base_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.89804 0.91373 0.92549 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/base_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="base_link2base_footprint"
+        type="fixed">
+        <origin
+        xyz="0 0 0.745"
+        rpy="0 0 0" />
+        <parent
+        link="base_footprint" />
+        <child
+        link="base_link" />
+        <axis
+        xyz="0 0 0" />
+    </joint>
+    <link
+        name="lf_hip_Link">
+        <inertial>
+        <origin
+            xyz="0.0002257 0.0010913 -0.20507"
+            rpy="0 0 0" />
+        <mass
+            value="4.514" />
+        <inertia
+            ixx="0.05019"
+            ixy="8.1938E-07"
+            ixz="2.8431E-08"
+            iyy="0.055218"
+            iyz="-3.1977E-09"
+            izz="0.028831" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_hip_Link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.611764705882353 0.658823529411765 0.670588235294118 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_hip_Link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_lf_hip"
+        type="fixed">
+        <!-- type="prismatic"> -->
+        <origin
+        xyz="0.58079 0.24894 -0.008"
+        rpy="0 0 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="lf_hip_Link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-0.45"
+        upper="0.45"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="lf_middle_link">
+        <inertial>
+        <origin
+            xyz="0.102409720732979 -1.06308678106959E-05 -0.0460702739732624"
+            rpy="0 0 0" />
+        <mass
+            value="1.64740485441055" />
+        <inertia
+            ixx="0.00341996771704756"
+            ixy="2.14146525461305E-06"
+            ixz="0.000139338449036329"
+            iyy="0.00799299508933219"
+            iyz="-2.58341568769268E-06"
+            izz="0.00967466536384048" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_middle_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.898039215686275 0.913725490196078 0.925490196078431 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_middle_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_lf_middle"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.00021463 0.001065 -0.4005"
+        rpy="0 0 0" />
+        <parent
+        link="lf_hip_Link" />
+        <child
+        link="lf_middle_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="lf_little_link">
+        <inertial>
+        <origin
+            xyz="-0.063015075494101 5.78935236277833E-05 -0.188597796780868"
+            rpy="0 0 0" />
+        <mass
+            value="1.02252615122702" />
+        <inertia
+            ixx="0.00300673236481909"
+            ixy="-4.58828305064266E-07"
+            ixz="-0.000232318328359933"
+            iyy="0.00186897467283061"
+            iyz="-2.45488712145401E-06"
+            izz="0.00248626423778543" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_little_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.898039215686275 0.913725490196078 0.925490196078431 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_little_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_lf_little"
+        type="revolute">
+        <origin
+        xyz="0.205 0 0"
+        rpy="0 0 1.5708" />
+        <parent
+        link="lf_middle_link" />
+        <child
+        link="lf_little_link" />
+        <axis
+        xyz="0 0 1" />
+        <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="10.0"
+        velocity="10.0" />
+    </joint>
+    <link
+        name="lf_foot_link">
+        <inertial>
+        <origin
+            xyz="0 1.11022302462516E-16 -1.11022302462516E-16"
+            rpy="0 0 0" />
+        <mass
+            value="0.833218963171619" />
+        <inertia
+            ixx="0.0029831776916658"
+            ixy="2.40921026346494E-07"
+            ixz="8.15006477474149E-20"
+            iyy="0.00298297810615266"
+            iyz="1.05305535526716E-21"
+            izz="0.00564310566335302" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_foot_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/lf_foot_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_lf_foot"
+        type="continuous">
+        <origin
+        xyz="0 0 -0.2365"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="lf_little_link" />
+        <child
+        link="lf_foot_link" />
+        <axis
+        xyz="0 0 1" />
+        <limit effort="100.0" velocity="100.0"/>
+    </joint>
+    <link
+        name="rf_hip_link">
+        <inertial>
+        <origin
+            xyz="0.000225701035490355 0.00109127130239317 -0.205068472491841"
+            rpy="0 0 0" />
+        <mass
+            value="4.514046098393" />
+        <inertia
+            ixx="0.0501900406253488"
+            ixy="8.19378219675267E-07"
+            ixz="2.84312348057662E-08"
+            iyy="0.0552176407262614"
+            iyz="-3.19770475662687E-09"
+            izz="0.0288311514115191" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_hip_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.611764705882353 0.658823529411765 0.670588235294118 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_hip_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_rf_hip"
+        type="fixed">
+        <!-- type="prismatic"> -->
+        <origin
+        xyz="0.58079 -0.25106 -0.008"
+        rpy="0 0 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="rf_hip_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-0.45"
+        upper="0.45"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="rf_middle_link">
+        <inertial>
+        <origin
+            xyz="0.10138135686298 -1.81035358767789E-05 -0.0459278368018696"
+            rpy="0 0 0" />
+        <mass
+            value="1.65694783525709" />
+        <inertia
+            ixx="0.00342218129605423"
+            ixy="-3.27689974988437E-07"
+            ixz="0.000127496818729804"
+            iyy="0.00802968416233213"
+            iyz="-9.73105412386312E-07"
+            izz="0.00970704166398942" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_middle_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.898039215686275 0.913725490196078 0.925490196078431 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_middle_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_rf_middle"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.00021463 0.001065 -0.4005"
+        rpy="0 0 0" />
+        <parent
+        link="rf_hip_link" />
+        <child
+        link="rf_middle_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="rf_little_link">
+        <inertial>
+        <origin
+            xyz="-0.0630150754940998 5.78935236317801E-05 -0.18859779678087"
+            rpy="0 0 0" />
+        <mass
+            value="1.02252615122702" />
+        <inertia
+            ixx="0.0030067323648191"
+            ixy="-4.58828305064216E-07"
+            ixz="-0.000232318328359935"
+            iyy="0.0018689746728306"
+            iyz="-2.45488712145746E-06"
+            izz="0.00248626423778542" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_little_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.8 0.8 0.8 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_little_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_rf_little"
+        type="revolute">
+        <origin
+        xyz="0.205 0 0"
+        rpy="0 0 -1.5708" />
+        <parent
+        link="rf_middle_link" />
+        <child
+        link="rf_little_link" />
+        <axis
+        xyz="0 0 1" />
+        <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="10.0"
+        velocity="10.0" />
+    </joint>
+    <link
+        name="rf_foot_link">
+        <inertial>
+        <origin
+            xyz="0 -1.11022302462516E-16 -1.11022302462516E-16"
+            rpy="0 0 0" />
+        <mass
+            value="0.83321896317162" />
+        <inertia
+            ixx="0.00298317769166583"
+            ixy="2.40921026346495E-07"
+            ixz="3.85803711112506E-19"
+            iyy="0.00298297810615268"
+            iyz="1.0928887889911E-21"
+            izz="0.00564310566335302" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_foot_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/rf_foot_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_rf_foot"
+        type="continuous">
+        <origin
+        xyz="0 0 -0.2365"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="rf_little_link" />
+        <child
+        link="rf_foot_link" />
+        <axis
+        xyz="0 0 -1" />
+        <limit effort="100.0" velocity="100.0"/>
+    </joint>
+    <link
+        name="mf_hip_link">
+        <inertial>
+        <origin
+            xyz="0.000225701035489961 0.00109127130239367 -0.205068472491841"
+            rpy="0 0 0" />
+        <mass
+            value="4.51404609839299" />
+        <inertia
+            ixx="0.0501900406253487"
+            ixy="8.19378219648892E-07"
+            ixz="2.84312348036346E-08"
+            iyy="0.0552176407262613"
+            iyz="-3.1977047397882E-09"
+            izz="0.0288311514115191" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_hip_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.611764705882353 0.658823529411765 0.670588235294118 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_hip_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+
+    <!-- <joint
+        name="joint_mr_hip"
+        type="prismatic">
+        <origin
+        xyz="-0.00021463 -0.25106 -0.008"
+        rpy="0 0 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="mr_hip_link" />
+        <axis
+        xyz="0 0 0" />
+        <limit
+        lower="-0.45"
+        upper="0.45"
+        effort="0"
+        velocity="0" />
+    </joint> -->
+
+    <joint
+        name="joint_mf_hip"
+        type="fixed">
+        <!-- type="prismatic"> -->
+        <origin
+        xyz="-0.00021463 0.24894 0.01"
+        rpy="0 0 0" />
+        <!-- xyz="-0.00021463 0.24894 -0.008" -->
+        <parent
+        link="base_link" />
+        <child
+        link="mf_hip_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-0.45"
+        upper="0.45"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="mf_middle_link">
+        <inertial>
+        <origin
+            xyz="0.10240972073298 -1.06308678106126E-05 -0.0460702739732621"
+            rpy="0 0 0" />
+        <mass
+            value="1.64740485441055" />
+        <inertia
+            ixx="0.00341996771704756"
+            ixy="2.14146525461147E-06"
+            ixz="0.000139338449036331"
+            iyy="0.00799299508933221"
+            iyz="-2.58341568769213E-06"
+            izz="0.00967466536384048" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_middle_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.8 0.8 0.8 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_middle_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_mf_middle"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.00021463 0.001065 -0.4005"
+        rpy="0 0 0" />
+        <parent
+        link="mf_hip_link" />
+        <child
+        link="mf_middle_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="mf_littl_link">
+        <inertial>
+        <origin
+            xyz="-0.0630150754941014 5.78935236273115E-05 -0.188597796780869"
+            rpy="0 0 0" />
+        <mass
+            value="1.02252615122702" />
+        <inertia
+            ixx="0.0030067323648191"
+            ixy="-4.58828305065822E-07"
+            ixz="-0.000232318328359934"
+            iyy="0.00186897467283061"
+            iyz="-2.45488712145318E-06"
+            izz="0.00248626423778543" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_littl_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.898039215686275 0.913725490196078 0.925490196078431 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_littl_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_mf_little"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.205 0 0"
+        rpy="0 0 1.5708" />
+        <parent
+        link="mf_middle_link" />
+        <child
+        link="mf_littl_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="mf_foot_link">
+        <inertial>
+        <origin
+            xyz="5.55111512312578E-17 -1.11022302462516E-16 -8.32667268468867E-17"
+            rpy="0 0 0" />
+        <mass
+            value="0.833218963171617" />
+        <inertia
+            ixx="0.00298317769166578"
+            ixy="2.40921026346492E-07"
+            ixz="-4.26849572620202E-19"
+            iyy="0.00298297810615263"
+            iyz="8.580847073236E-22"
+            izz="0.00564310566335301" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_foot_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mf_foot_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_mf_foot"
+        type="fixed">
+        <!-- type="continuous"> -->
+        <origin
+        xyz="0 0 -0.2365"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="mf_littl_link" />
+        <child
+        link="mf_foot_link" />
+        <axis
+        xyz="0 0 1" />
+    </joint>
+    <link
+        name="mr_hip_link">
+        <inertial>
+        <origin
+            xyz="0.000225701035489839 0.00109127130239337 -0.205068472491841"
+            rpy="0 0 0" />
+        <mass
+            value="4.51404609839299" />
+        <inertia
+            ixx="0.0501900406253487"
+            ixy="8.19378219655961E-07"
+            ixz="2.84312347929364E-08"
+            iyy="0.0552176407262613"
+            iyz="-3.1977047410473E-09"
+            izz="0.0288311514115191" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_hip_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.611764705882353 0.658823529411765 0.670588235294118 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_hip_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_mr_hip"
+        type="fixed">
+        <!-- type="prismatic"> -->
+        <origin
+        xyz="-0.00021463 -0.25106 0.01"
+        rpy="0 0 0" />
+        <!-- xyz="-0.00021463 -0.25106 -0.008" -->
+        <parent
+        link="base_link" />
+        <child
+        link="mr_hip_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-0.45"
+        upper="0.45"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="mr_middle_link">
+        <inertial>
+        <origin
+            xyz="0.101381356862981 -1.81035358780002E-05 -0.0459278368018691"
+            rpy="0 0 0" />
+        <mass
+            value="1.65694783525709" />
+        <inertia
+            ixx="0.00342218129605423"
+            ixy="-3.27689974989366E-07"
+            ixz="0.0001274968187298"
+            iyy="0.00802968416233213"
+            iyz="-9.7310541238344E-07"
+            izz="0.00970704166398942" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_middle_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.898039215686275 0.913725490196078 0.925490196078431 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_middle_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_mr_middle"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.00021463 0.001065 -0.4005"
+        rpy="0 0 0" />
+        <parent
+        link="mr_hip_link" />
+        <child
+        link="mr_middle_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="mr_little_link">
+        <inertial>
+        <origin
+            xyz="-0.0630150754941011 5.78935236274225E-05 -0.188597796780869"
+            rpy="0 0 0" />
+        <mass
+            value="1.02252615122702" />
+        <inertia
+            ixx="0.00300673236481909"
+            ixy="-4.58828305066229E-07"
+            ixz="-0.000232318328359935"
+            iyy="0.00186897467283061"
+            iyz="-2.45488712145451E-06"
+            izz="0.00248626423778542" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_little_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.8 0.8 0.8 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_little_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_mr_little"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.205 0 0"
+        rpy="0 0 -1.5708" />
+        <parent
+        link="mr_middle_link" />
+        <child
+        link="mr_little_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="mr_foot_link">
+        <inertial>
+        <origin
+            xyz="-5.55111512312578E-17 -1.11022302462516E-16 -5.55111512312578E-17"
+            rpy="0 0 0" />
+        <mass
+            value="0.833218963171616" />
+        <inertia
+            ixx="0.00298317769166578"
+            ixy="2.40921026346493E-07"
+            ixz="4.82251944572041E-19"
+            iyy="0.00298297810615263"
+            iyz="1.03397387819312E-21"
+            izz="0.00564310566335301" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_foot_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/mr_foot_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_mr_foot"
+        type="fixed">
+        <!-- type="continuous"> -->
+        <origin
+        xyz="0 0 -0.2365"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="mr_little_link" />
+        <child
+        link="mr_foot_link" />
+        <axis
+        xyz="0 0 1" />
+    </joint>
+    <link
+        name="bf_hip_link">
+        <inertial>
+        <origin
+            xyz="0.0002257 0.0010913 -0.20507"
+            rpy="0 0 0" />
+        <mass
+            value="4.514" />
+        <inertia
+            ixx="0.05019"
+            ixy="8.1938E-07"
+            ixz="2.8431E-08"
+            iyy="0.055218"
+            iyz="-3.1977E-09"
+            izz="0.028831" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_hip_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.61176 0.65882 0.67059 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_hip_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_bf_hip"
+        type="fixed">
+        <!-- type="prismatic"> -->
+        <origin
+        xyz="-0.58121 0.24894 -0.008"
+        rpy="0 0 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="bf_hip_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-0.45"
+        upper="0.45"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="bf_middle_link">
+        <inertial>
+        <origin
+            xyz="0.102409720732981 -1.063086781114E-05 -0.0460702739732624"
+            rpy="0 0 0" />
+        <mass
+            value="1.64740485441055" />
+        <inertia
+            ixx="0.00341996771704755"
+            ixy="2.1414652546128E-06"
+            ixz="0.000139338449036337"
+            iyy="0.00799299508933219"
+            iyz="-2.58341568769104E-06"
+            izz="0.00967466536384048" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_middle_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.898039215686275 0.913725490196078 0.925490196078431 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_middle_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_bf_middle"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.00021463 0.001065 -0.4005"
+        rpy="0 0 3.1416" />
+        <parent
+        link="bf_hip_link" />
+        <child
+        link="bf_middle_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="bf_little_link">
+        <inertial>
+        <origin
+            xyz="-0.0630150754941002 5.7893523627256E-05 -0.188597796780869"
+            rpy="0 0 0" />
+        <mass
+            value="1.02252615122702" />
+        <inertia
+            ixx="0.0030067323648191"
+            ixy="-4.58828305064937E-07"
+            ixz="-0.000232318328359934"
+            iyy="0.0018689746728306"
+            iyz="-2.45488712145411E-06"
+            izz="0.00248626423778542" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_little_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.898039215686275 0.913725490196078 0.925490196078431 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_little_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_bf_little"
+        type="revolute">
+        <origin
+        xyz="0.205 0 0"
+        rpy="0 0 -1.5708" />
+        <parent
+        link="bf_middle_link" />
+        <child
+        link="bf_little_link" />
+        <axis
+        xyz="0 0 1" />
+        <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="10.0"
+        velocity="10.0" />
+    </joint>
+    <link
+        name="bf_foot_link">
+        <inertial>
+        <origin
+            xyz="0 -1.11022302462516E-16 -5.55111512312578E-17"
+            rpy="0 0 0" />
+        <mass
+            value="0.833218963171616" />
+        <inertia
+            ixx="0.00298317769166579"
+            ixy="2.40921026346491E-07"
+            ixz="1.34545417062493E-19"
+            iyy="0.00298297810615264"
+            iyz="7.42262024783356E-22"
+            izz="0.005643105663353" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_foot_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/bf_foot_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_bf_foot"
+        type="continuous">
+        <origin
+        xyz="0 0 -0.2365"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="bf_little_link" />
+        <child
+        link="bf_foot_link" />
+        <axis
+        xyz="0 0 1" />
+        <limit effort="100.0" velocity="100.0"/>
+    </joint>
+    <link
+        name="br_hip_link">
+        <inertial>
+        <origin
+            xyz="0.0002257 0.0010913 -0.20507"
+            rpy="0 0 0" />
+        <mass
+            value="4.514" />
+        <inertia
+            ixx="0.05019"
+            ixy="8.1938E-07"
+            ixz="2.8431E-08"
+            iyy="0.055218"
+            iyz="-3.1977E-09"
+            izz="0.028831" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_hip_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.611764705882353 0.658823529411765 0.670588235294118 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_hip_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_br_hip"
+        type="fixed">
+        <!-- type="prismatic"> -->
+        <origin
+        xyz="-0.58121 -0.25106 -0.008"
+        rpy="0 0 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="br_hip_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-0.45"
+        upper="0.45"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="br_middle_link">
+        <inertial>
+        <origin
+            xyz="0.096293 -1.7622E-05 -0.047553"
+            rpy="0 0 0" />
+        <mass
+            value="1.7022" />
+        <inertia
+            ixx="0.0035483"
+            ixy="-3.2769E-07"
+            ixz="0.0001275"
+            iyy="0.0081564"
+            iyz="-9.731E-07"
+            izz="0.0097096" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_middle_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.89804 0.91373 0.92549 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_middle_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_br_middle"
+        type="fixed">
+        <!-- type="revolute"> -->
+        <origin
+        xyz="0.00021463 0.001065 -0.4005"
+        rpy="0 0 3.1416" />
+        <parent
+        link="br_hip_link" />
+        <child
+        link="br_middle_link" />
+        <axis
+        xyz="0 0 1" />
+        <!-- <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="0"
+        velocity="0" /> -->
+    </joint>
+    <link
+        name="br_little_link">
+        <inertial>
+        <origin
+            xyz="-0.0630150754941006 5.78935236314471E-05 -0.18859779678087"
+            rpy="0 0 0" />
+        <mass
+            value="1.02252615122702" />
+        <inertia
+            ixx="0.00300673236481909"
+            ixy="-4.58828305064795E-07"
+            ixz="-0.000232318328359934"
+            iyy="0.00186897467283061"
+            iyz="-2.45488712145651E-06"
+            izz="0.00248626423778542" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_little_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.8 0.8 0.8 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_little_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_br_little"
+        type="revolute">
+        <origin
+        xyz="0.205 0 0"
+        rpy="0 0 1.5708" />
+        <parent
+        link="br_middle_link" />
+        <child
+        link="br_little_link" />
+        <axis
+        xyz="0 0 1" />
+        <limit
+        lower="-3.14"
+        upper="3.14"
+        effort="10.0"
+        velocity="10.0" />
+    </joint>
+    <link
+        name="br_foot_link">
+        <inertial>
+        <origin
+            xyz="5.55111512312578E-17 1.11022302462516E-16 -2.22044604925031E-16"
+            rpy="0 0 0" />
+        <mass
+            value="0.833218963171616" />
+        <inertia
+            ixx="0.0029831776916658"
+            ixy="2.40921026346495E-07"
+            ixz="1.32212891381004E-19"
+            iyy="0.00298297810615265"
+            iyz="3.20242719147419E-22"
+            izz="0.00564310566335301" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_foot_link.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/br_foot_link.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint_br_foot"
+        type="continuous">
+        <origin
+        xyz="0 0 -0.2365"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="br_little_link" />
+        <child
+        link="br_foot_link" />
+        <axis
+        xyz="0 0 -1" />
+        <limit effort="100.0" velocity="100.0"/>
+    </joint>
+    <!-- <gazebo reference="lf_foot_link">
+        <mu1>1</mu1>
+        <mu2>1</mu2>
+        <kp>1000000</kp>
+        <kd>10</kd>
+    </gazebo> 
+    <gazebo reference="rf_foot_link">
+        <mu1>1</mu1>
+        <mu2>1</mu2>
+        <kp>1000000</kp>
+        <kd>10</kd>
+    </gazebo> 
+    <gazebo reference="bf_foot_link">
+        <mu1>1</mu1>
+        <mu2>1</mu2>
+        <kp>1000000</kp>
+        <kd>10</kd>
+    </gazebo>
+    <gazebo reference="br_foot_link">
+        <mu1>1</mu1>
+        <mu2>1</mu2>
+        <kp>1000000</kp>
+        <kd>10</kd>
+    </gazebo>   -->
+</robot>

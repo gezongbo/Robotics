@@ -1,0 +1,8 @@
+<launch>
+    <!-- 规划运动 -->
+    <arg name="ref_traj" default="line" />
+    <node name="test_move" pkg="traj_tracking" type="test_move" args="$(arg ref_traj)" output="screen" />
+
+    <!-- 显示末端轨迹 -->
+    <node name="show_path" pkg="traj_tracking" type="show_path" />
+</launch>

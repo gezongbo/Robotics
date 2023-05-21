@@ -1,0 +1,18 @@
+<robot name="w668" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- ros_control plugin -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <!--模型导入-->
+    <xacro:include filename="base.xacro" />
+    <xacro:include filename="arm.xacro" />
+    <!-- <xacro:include filename="jaka_arm.xacro" /> -->
+    <xacro:include filename="laser.xacro" />
+
+    <!-- 传动实现 -->
+    <xacro:include filename="base_transmission.xacro" />
+    
+</robot>

@@ -1,0 +1,17 @@
+<launch>
+    <!-- 将 xacro 文件内容设置进参数服务器 -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find motion_planning)/urdf/w668.xacro" />
+    <!-- 启动 rivz -->
+    <node pkg="rviz" type="rviz" name="rviz_test" args="-d $(find motion_planning)/config/show_test.rviz" />
+
+    <!--
+        rviz中显示urdf时，必须发布不同部件之间的坐标系关系！
+        ROS中提供了关于机器人模型显示的坐标发布相关节点（两个:机器人状态和关节状态）
+    -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+    <!-- <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" /> -->
+
+    <!-- 启动图形化的控制关节运动节点 -->
+    <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+
+</launch>

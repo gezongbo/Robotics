@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find arm_moveit)/config/ros_controllers.yaml" command="load"/>
+  <rosparam file="$(find motion_planning)/config/robot_control.yaml" command="load"/>
+
+  <!-- Load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="joint_state_controller jaka_arm_controller 
+        joint_lf_little_position_controller joint_rf_little_position_controller 
+        joint_bf_little_position_controller joint_br_little_position_controller
+        joint_lf_foot_velocity_controller joint_rf_foot_velocity_controller 
+        joint_bf_foot_velocity_controller joint_br_foot_velocity_controller "/>
+
+</launch>

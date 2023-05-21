@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: motion_planning
+    relative_path: urdf/w668.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/w668.srdf
+  CONFIG:
+    author_name: yinboer
+    author_email: yinboer@sjtu.edu.cn
+    generated_timestamp: 1667978051

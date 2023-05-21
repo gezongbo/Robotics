@@ -1,0 +1,8 @@
+float32 goal_x
+float32 goal_y
+float32 goal_z
+float32 rot_R
+float32 rot_P
+float32 rot_Y
+---
+bool success

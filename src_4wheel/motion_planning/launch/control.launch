@@ -1,0 +1,4 @@
+<launch>
+    <node name="control" pkg="motion_planning" type="control" />
+    <node name="pub_odom" pkg="motion_planning" type="pub_odom" />
+</launch>

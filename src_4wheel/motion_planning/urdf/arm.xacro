@@ -1,0 +1,470 @@
+<robot name="myarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <link
+        name="link0">
+        <inertial>
+        <origin
+            xyz="0.00090112 0.020559 8.3603E-08"
+            rpy="0 0 0" />
+        <mass
+            value="0.73469" />
+        <inertia
+            ixx="0.0012786"
+            ixy="6.3952E-06"
+            ixz="-3.3128E-08"
+            iyy="0.0027347"
+            iyz="-1.1462E-10"
+            izz="0.0016396" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link0.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="0.84706 0.84706 0.84706 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link0.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint0"
+        type="fixed">
+        <origin
+        xyz="0.581 0.235 0.022"
+        rpy="0 0 0" />
+        <parent
+        link="base_link" />
+        <child
+        link="link0" />
+        <axis
+        xyz="0 0 0" />
+    </joint>
+    <link
+        name="link1">
+        <inertial>
+        <origin
+            xyz="-0.0039712 0.099324 -6.2711E-07"
+            rpy="0 0 0" />
+        <mass
+            value="3.7811" />
+        <inertia
+            ixx="0.01346"
+            ixy="0.00051368"
+            ixz="-2.6251E-07"
+            iyy="0.011734"
+            iyz="-1.3218E-07"
+            izz="0.013809" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link1.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link1.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint1"
+        type="revolute">
+        <origin
+        xyz="0 0 0.04"
+        rpy="1.5708 0 1.5708" />
+        <parent
+        link="link0" />
+        <child
+        link="link1" />
+        <axis
+        xyz="0 1 0" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="100.0"
+        velocity="100.0" />
+    </joint>
+    <link
+        name="link2">
+        <inertial>
+        <origin
+            xyz="0.2975 0.10062 -3.1429E-09"
+            rpy="0 0 0" />
+        <mass
+            value="12.449" />
+        <inertia
+            ixx="0.035967"
+            ixy="-9.2592E-09"
+            ixz="-5.2461E-07"
+            iyy="0.11658"
+            iyz="-1.6116E-09"
+            izz="0.12072" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link2.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link2.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint2"
+        type="revolute">
+        <origin
+        xyz="-0.079 0.10265 0"
+        rpy="0 0 1.5708" />
+        <parent
+        link="link1" />
+        <child
+        link="link2" />
+        <axis
+        xyz="0 -1 0" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="100.0"
+        velocity="100.0" />
+    </joint>
+    <link
+        name="link3">
+        <inertial>
+        <origin
+            xyz="0.27265 -2.8976E-07 0.056381"
+            rpy="0 0 0" />
+        <mass
+            value="5.065" />
+        <inertia
+            ixx="0.0072028"
+            ixy="6.9637E-07"
+            ixz="-0.0058913"
+            iyy="0.12695"
+            iyz="-1.811E-07"
+            izz="0.12658" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link3.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link3.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint3"
+        type="revolute">
+        <origin
+        xyz="0.595 0 0"
+        rpy="1.5708 0 0" />
+        <parent
+        link="link2" />
+        <child
+        link="link3" />
+        <axis
+        xyz="0 0 1" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="100.0"
+        velocity="100.0" />
+    </joint>
+    <link
+        name="link4">
+        <inertial>
+        <origin
+            xyz="0.047238 0.0033886 2.3174E-07"
+            rpy="0 0 0" />
+        <mass
+            value="0.88376" />
+        <inertia
+            ixx="0.0015049"
+            ixy="-9.0362E-06"
+            ixz="5.0695E-09"
+            iyy="0.0010529"
+            iyz="-9.2504E-11"
+            izz="0.0015636" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link4.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link4.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint4"
+        type="revolute">
+        <origin
+        xyz="0.5715 0 -0.002"
+        rpy="-1.5708 1.5708 0" />
+        <parent
+        link="link3" />
+        <child
+        link="link4" />
+        <axis
+        xyz="-1 0 0" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="100.0"
+        velocity="100.0" />
+    </joint>
+    <link
+        name="link5">
+        <inertial>
+        <origin
+            xyz="0.0013489 1.7721E-07 0.047344"
+            rpy="0 0 0" />
+        <mass
+            value="0.91355" />
+        <inertia
+            ixx="0.0010837"
+            ixy="-4.6204E-09"
+            ixz="-5.0996E-06"
+            iyy="0.0016533"
+            iyz="6.6835E-09"
+            izz="0.0015943" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link5.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link5.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint5"
+        type="revolute">
+        <origin
+        xyz="0.0505 0.0645 0"
+        rpy="-1.5708 -1.5708 0" />
+        <parent
+        link="link4" />
+        <child
+        link="link5" />
+        <axis
+        xyz="0 0 -1" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="100.0"
+        velocity="100.0" />
+    </joint>
+    <link
+        name="link6">
+        <inertial>
+        <origin
+            xyz="-8.5592E-06 0.017443 -0.00011789"
+            rpy="0 0 0" />
+        <mass
+            value="0.22502" />
+        <inertia
+            ixx="0.00013693"
+            ixy="-1.4093E-07"
+            ixz="1.2099E-07"
+            iyy="0.00022671"
+            iyz="-2.0632E-07"
+            izz="0.000137" />
+        </inertial>
+        <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link6.STL" />
+        </geometry>
+        <material
+            name="">
+            <color
+            rgba="1 1 1 1" />
+        </material>
+        </visual>
+        <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <geometry>
+            <mesh
+            filename="package://motion_planning/meshes/link6.STL" />
+        </geometry>
+        </collision>
+    </link>
+    <joint
+        name="joint6"
+        type="revolute">
+        <origin
+        xyz="0.0645 0 0.0505"
+        rpy="3.1416 0 1.5708" />
+        <parent
+        link="link5" />
+        <child
+        link="link6" />
+        <axis
+        xyz="0 -1 0" />
+        <limit
+        lower="-6.28"
+        upper="6.28"
+        effort="100.0"
+        velocity="100.0" />
+    </joint>
+    <link name="hand">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0.001" />
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.02" />
+            </geometry>
+            <material name="">
+                <color rgba="0.5 1 1 0.5" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <sphere radius="0.02" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="joint7" type="fixed">
+        <origin xyz="0 0.05 0" rpy="0 0 1.5708" />
+        <parent link="link6" />
+        <child link="hand" />
+    </joint>
+    <xacro:macro name="jaka_gazebo" >
+        <xacro:macro name="arm_gazebo" params="link">
+            <gazebo reference="${link}">
+                <material>Gazebo/White</material>
+                <mu1>0.61</mu1>
+                <mu2>0.61</mu2>
+            </gazebo>
+        </xacro:macro>
+
+        <xacro:arm_gazebo link="link0"/>
+        <xacro:arm_gazebo link="link1"/>
+        <xacro:arm_gazebo link="link2"/>
+        <xacro:arm_gazebo link="link3"/>
+        <xacro:arm_gazebo link="link4"/>
+        <xacro:arm_gazebo link="link5"/>
+        <xacro:arm_gazebo link="link6"/>
+    </xacro:macro>
+    <gazebo reference="hand">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <xacro:macro name="joint_trans" params="joint_name">
+        <transmission name="${joint_name}_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${joint_name}">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${joint_name}_motor">
+                <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+    
+    <xacro:joint_trans joint_name="joint1" />
+    <xacro:joint_trans joint_name="joint2" />
+    <xacro:joint_trans joint_name="joint3" />
+    <xacro:joint_trans joint_name="joint4" />
+    <xacro:joint_trans joint_name="joint5" />
+    <xacro:joint_trans joint_name="joint6" />
+</robot>

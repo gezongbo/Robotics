@@ -1,0 +1,37 @@
+<launch>
+
+    <!-- 将 Urdf 文件的内容加载到参数服务器 -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find motion_planning)/urdf/w668_noarm.xacro" />
+
+    <!-- 启动 gazebo，使用my_env环境 -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find motion_planning)/worlds/my_env2.world" />
+    </include>
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model w668 -param robot_description -z 0.8"  />
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find motion_planning)/config/robot_control.yaml" command="load"/>
+
+    <!-- load the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" args="joint_state_controller 
+        joint_lf_little_position_controller joint_rf_little_position_controller 
+        joint_bf_little_position_controller joint_br_little_position_controller
+        joint_lf_foot_velocity_controller joint_rf_foot_velocity_controller 
+        joint_bf_foot_velocity_controller joint_br_foot_velocity_controller" />
+        <!-- joint1_position_controller joint2_position_controller joint3_position_controller
+        joint4_position_controller joint5_position_controller joint6_position_controller -->
+
+    <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> 
+
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+            respawn="false" output="screen">
+    </node>
+
+    <!-- 启动控制 -->
+    <node name="control" pkg="motion_planning" type="control" />
+    <node name="pub_odom" pkg="motion_planning" type="pub_odom" />
+</launch>
